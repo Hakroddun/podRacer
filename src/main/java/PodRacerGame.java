@@ -1,4 +1,7 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class PodRacerGame
 {
@@ -6,7 +9,7 @@ public class PodRacerGame
     private ArrayList<Car> cars;
     private String track;
 
-
+    //Starts the game.
     public void startRace(int laps)
     {
         ranking = new TreeMap<>(Comparator.reverseOrder());
@@ -57,28 +60,21 @@ public class PodRacerGame
     //Checks if the race is done.
     private boolean isRaceFinished(String trackProgress)
     {
-        if(trackProgress.length()==0)
-        {
-            return true;
-        }
-        return false;
+        return trackProgress.length() == 0;
     }
 
     //Checks what type of segment is coming up in the track.
     //Throws an exception if it is not a valid character
     private String nextSegmentType(String trackProgress)
     {
-        if (String.valueOf(trackProgress.charAt(0)).equals("0"))
+        switch (String.valueOf(trackProgress.charAt(0)))
         {
-            return "straight";
-        }
-        else if (String.valueOf(trackProgress.charAt(0)).equals("1"))
-        {
-            return "corner";
-        }
-        else
-        {
-            throw new RuntimeException("Invalid value in track file");
+            case "0":
+                return "straight";
+            case "1":
+                return "corner";
+            default:
+                throw new RuntimeException("Invalid value in track file");
         }
     }
 
@@ -86,7 +82,7 @@ public class PodRacerGame
     //Also checks if the track is at its end.
     private int getStraightLength(String trackProgress)
     {
-        if(trackProgress.indexOf("1") != -1)
+        if(trackProgress.contains("1"))
         {
             return trackProgress.indexOf("1");
         }
@@ -100,7 +96,7 @@ public class PodRacerGame
     //Also checks if the track is at its end.
     private int getCornerLength(String trackProgress)
     {
-        if(trackProgress.indexOf("0") != -1)
+        if(trackProgress.contains("0"))
         {
             return trackProgress.indexOf("0");
         }

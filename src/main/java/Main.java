@@ -1,9 +1,3 @@
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -40,7 +34,7 @@ public class Main
         {
             Integer score = entry.getKey();
             String carName = entry.getValue();
-            System.out.println(position + "place goes to " + carName + " with a score of " + score);
+            System.out.println(position + " place goes to " + carName + " with a score of " + score);
             position++;
         }
     }
