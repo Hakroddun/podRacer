@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,12 +8,10 @@ public class Utility
     //Retrieves the track data from a file inside resources;
     public String getTrackFromFile(String trackFileToRead)
     {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(trackFileToRead).getFile());
         String track = "";
         try
         {
-            track = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
+            track = new String(Files.readAllBytes(Paths.get(trackFileToRead)));
         }
         catch (IOException e)
         {
